@@ -4,3 +4,8 @@ export interface Quote {
   image: string;
   characterDirection: string;
 }
+
+
+export interface Quote {
+  [k: string]: any;
+}
