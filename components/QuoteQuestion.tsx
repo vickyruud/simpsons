@@ -30,8 +30,10 @@ const QuoteQuestion = ({ quoteObject }: { quoteObject: any }) => {
         <Image src={quoteObject.image} width="400" height="400" />
       ) : null}
       {wrong ? <p>You are Wrong!</p> : null}
-      <input onChange={(e) => setUserResponse(e.target.value)}></input>
-      <button onClick={onSubmit}>Submit</button>
+      <form onSubmit={onSubmit}>
+        <input onChange={(e) => setUserResponse(e.target.value)}></input>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };

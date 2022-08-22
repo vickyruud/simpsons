@@ -6,22 +6,9 @@ import styles from "../styles/Home.module.css";
 import axios from "axios";
 import QuoteQuestion from "../components/QuoteQuestion";
 import { Quote } from "../types";
+import bannerImage from "../public/banner.jpg";
 
 const Home: NextPage = () => {
-  const [quotes, setQuotes] = useState([]);
-  const [count, setCount] = useState(0);
-
-  const fetchQuotes = () => {
-    axios
-      .get("https://thesimpsonsquoteapi.glitch.me/quotes?count=10")
-      .then((res) => setQuotes(res.data))
-      .catch((e) => console.log(e.message));
-  };
-
-  useEffect(() => {
-    fetchQuotes();
-  }, []);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -31,8 +18,8 @@ const Home: NextPage = () => {
       </Head>
 
       <div>
+        <Image src={bannerImage} alt="banner-image" />
         <h1>Welcome to Springfield</h1>
-        {quotes.length > 1 ? <QuoteQuestion quoteObject={quotes[0]} /> : null}
       </div>
     </div>
   );
