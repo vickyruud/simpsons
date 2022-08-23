@@ -17,6 +17,8 @@ const QuoteQuestion = ({
   setErrorMessage,
   result,
   setResult,
+  setNumberCorrect,
+  numberCorrect,
 }: {
   quoteObject: any;
   fetchQuotes: any;
@@ -31,6 +33,8 @@ const QuoteQuestion = ({
   setErrorMessage: any;
   result: any;
   setResult: any;
+  setNumberCorrect: any;
+  numberCorrect: any;
 }) => {
   const [userResponse, setUserResponse] = useState("");
 
@@ -42,10 +46,11 @@ const QuoteQuestion = ({
     if (userResponse.trim()) {
       if (lowerCase.includes(userResponse.toLowerCase())) {
         setAnswered(true);
-        setResult((prevResult: any) => [...prevResult, { correct }]);
+        setResult((prevResult: any) => [...prevResult, correct]);
         setWrong(false);
         setErrorMessage("");
         setUserResponse("");
+        setNumberCorrect((prevNumber: number) => prevNumber + 1);
       } else {
         setAnswered(false);
         setWrong(true);
@@ -66,6 +71,7 @@ const QuoteQuestion = ({
     event.preventDefault();
     fetchQuotes();
     setCount(0);
+    setResult([]);
   };
 
   return (
@@ -83,13 +89,14 @@ const QuoteQuestion = ({
           onChange={(e) => setUserResponse(e.target.value)}
           value={userResponse}
         ></input>
-        <StyledButton type="submit">Submit</StyledButton>
+        <StyledButton type="submit">Guess!</StyledButton>
         {count <= 9 ? (
           <StyledButton onClick={handleNextClick}>Next</StyledButton>
         ) : (
           <StyledButton onClick={handleResetClick}>Reset</StyledButton>
         )}
       </AnswerForm>
+      {count > 9 ? <p>Your Score is {numberCorrect} / 10</p> : null}
     </Container>
   );
 };

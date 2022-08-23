@@ -11,6 +11,7 @@ const Game = () => {
   const [wrong, setWrong] = useState(false);
   const [count, setCount] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+  const [numberCorrect, setNumberCorrect] = useState(0);
 
   const fetchQuotes = () => {
     axios
@@ -21,13 +22,19 @@ const Game = () => {
 
   const handleNext = () => {
     if (count < 9) {
-      setCount((prevCount) => prevCount + 1);
+      setCount((prevCount: number) => prevCount + 1);
+
       setAnswered(false);
       setWrong(false);
       setErrorMessage("");
       console.log(result);
+      console.log(numberCorrect);
     } else {
       setCount(10);
+      setAnswered(false);
+      setWrong(false);
+      setErrorMessage("");
+      console.log(result);
     }
   };
 
@@ -52,6 +59,8 @@ const Game = () => {
           setErrorMessage={setErrorMessage}
           result={result}
           setResult={setResult}
+          numberCorrect={numberCorrect}
+          setNumberCorrect={setNumberCorrect}
         />
       ) : null}
     </Container>
