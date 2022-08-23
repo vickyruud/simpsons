@@ -51,6 +51,7 @@ const QuoteQuestion = ({
         setErrorMessage("");
         setUserResponse("");
         setNumberCorrect((prevNumber: number) => prevNumber + 1);
+        console.log(numberCorrect);
       } else {
         setAnswered(false);
         setWrong(true);
@@ -72,6 +73,7 @@ const QuoteQuestion = ({
     fetchQuotes();
     setCount(0);
     setResult([]);
+    setNumberCorrect(0);
   };
 
   return (
