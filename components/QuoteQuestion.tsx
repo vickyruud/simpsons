@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { charactersList } from "../data/characters";
 
 const QuoteQuestion = ({
   quoteObject,
