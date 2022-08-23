@@ -18,8 +18,7 @@ const Game = () => {
       .catch((e) => console.log(e.message));
   };
 
-  const handleNext = (event: any) => {
-    event.preventDefault();
+  const handleNext = () => {
     console.log("here");
     if (count < 9) {
       setCount((prevCount) => prevCount + 1);

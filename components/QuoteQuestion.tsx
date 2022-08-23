@@ -40,6 +40,7 @@ const QuoteQuestion = ({
         setAnswered(true);
         setWrong(false);
         setErrorMessage("");
+        setUserResponse("");
       } else {
         setAnswered(false);
         setWrong(true);
@@ -50,22 +51,31 @@ const QuoteQuestion = ({
     }
   };
 
+  const handleNextClick = (event: any) => {
+    event.preventDefault();
+    setUserResponse("");
+    handleNext();
+  };
+
   return (
-    <div>
+    <Container>
       <h1>Who said this?</h1>
       <h2>{count <= 9 ? quoteObject.quote : null} </h2>
       {answered ? <p>You are Correct!!</p> : null}
       {answered ? (
-        <Image src={quoteObject.image} width="400" height="400" />
+        <Image src={quoteObject.image} width="250" height="250" />
       ) : null}
       {wrong ? <p>You are Wrong!</p> : null}
       {errorMessage ? <p>{errorMessage}</p> : null}
-      <form onSubmit={onSubmit}>
-        <input onChange={(e) => setUserResponse(e.target.value)}></input>
+      <AnswerForm onSubmit={onSubmit}>
+        <input
+          onChange={(e) => setUserResponse(e.target.value)}
+          value={userResponse}
+        ></input>
         <StyledButton type="submit">Submit</StyledButton>
-        <StyledButton onClick={handleNext}>Next</StyledButton>
-      </form>
-    </div>
+        <StyledButton onClick={handleNextClick}>Next</StyledButton>
+      </AnswerForm>
+    </Container>
   );
 };
 
@@ -78,4 +88,16 @@ const StyledButton = styled.button`
   border: 2px solid blue;
   margin: 0 1em;
   padding: 0.25em 1em;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+const AnswerForm = styled.form`
+  display: flex;
+  margin-top: 50px;
 `;
