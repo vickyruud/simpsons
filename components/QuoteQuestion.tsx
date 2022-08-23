@@ -15,6 +15,8 @@ const QuoteQuestion = ({
   count,
   errorMessage,
   setErrorMessage,
+  result,
+  setResult,
 }: {
   quoteObject: any;
   fetchQuotes: any;
@@ -27,18 +29,20 @@ const QuoteQuestion = ({
   count: number;
   errorMessage: string;
   setErrorMessage: any;
+  result: any;
+  setResult: any;
 }) => {
   const [userResponse, setUserResponse] = useState("");
 
   const onSubmit = (event: any) => {
     event.preventDefault();
     setAnswered(false);
-
     const correct = quoteObject.character;
     const lowerCase = correct.toLowerCase();
     if (userResponse.trim()) {
       if (lowerCase.includes(userResponse.toLowerCase())) {
         setAnswered(true);
+        setResult((prevResult: any) => [...prevResult, { correct }]);
         setWrong(false);
         setErrorMessage("");
         setUserResponse("");
@@ -58,6 +62,12 @@ const QuoteQuestion = ({
     handleNext();
   };
 
+  const handleResetClick = (event: any) => {
+    event.preventDefault();
+    fetchQuotes();
+    setCount(0);
+  };
+
   return (
     <Container>
       <h1>Who said this?</h1>
@@ -74,7 +84,11 @@ const QuoteQuestion = ({
           value={userResponse}
         ></input>
         <StyledButton type="submit">Submit</StyledButton>
-        <StyledButton onClick={handleNextClick}>Next</StyledButton>
+        {count <= 9 ? (
+          <StyledButton onClick={handleNextClick}>Next</StyledButton>
+        ) : (
+          <StyledButton onClick={handleResetClick}>Reset</StyledButton>
+        )}
       </AnswerForm>
     </Container>
   );

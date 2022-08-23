@@ -6,6 +6,7 @@ import styled from "styled-components";
 const Game = () => {
   const [quotes, setQuotes] = useState([]);
   const [answered, setAnswered] = useState(false);
+  const [result, setResult] = useState([]);
 
   const [wrong, setWrong] = useState(false);
   const [count, setCount] = useState(0);
@@ -19,18 +20,14 @@ const Game = () => {
   };
 
   const handleNext = () => {
-    console.log("here");
     if (count < 9) {
       setCount((prevCount) => prevCount + 1);
       setAnswered(false);
       setWrong(false);
       setErrorMessage("");
+      console.log(result);
     } else {
-      setErrorMessage("");
-      fetchQuotes();
-      setAnswered(false);
-      setWrong(false);
-      setCount(0);
+      setCount(10);
     }
   };
 
@@ -53,6 +50,8 @@ const Game = () => {
           count={count}
           errorMessage={errorMessage}
           setErrorMessage={setErrorMessage}
+          result={result}
+          setResult={setResult}
         />
       ) : null}
     </Container>
