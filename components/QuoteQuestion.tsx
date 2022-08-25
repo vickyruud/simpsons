@@ -68,6 +68,7 @@ const QuoteQuestion = ({
     handleNext();
   };
 
+  //resets the game
   const handleResetClick = (event: any) => {
     event.preventDefault();
     fetchQuotes();

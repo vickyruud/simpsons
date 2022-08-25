@@ -20,6 +20,7 @@ const Game = () => {
       .catch((e) => console.log(e.message));
   };
 
+  //shows next question
   const handleNext = () => {
     if (count < 9) {
       setCount((prevCount: number) => prevCount + 1);
