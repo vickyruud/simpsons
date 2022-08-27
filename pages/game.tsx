@@ -20,22 +20,21 @@ const Game = () => {
       .catch((e) => console.log(e.message));
   };
 
+  const resetWrongAnswered = () => {
+    setAnswered(false);
+    setWrong(false);
+    setErrorMessage("");
+  };
+
   //shows next question
   const handleNext = () => {
     if (count < 9) {
       setCount((prevCount: number) => prevCount + 1);
 
-      setAnswered(false);
-      setWrong(false);
-      setErrorMessage("");
-      console.log(result);
-      console.log(numberCorrect);
+      resetWrongAnswered();
     } else {
       setCount(10);
-      setAnswered(false);
-      setWrong(false);
-      setErrorMessage("");
-      console.log(result);
+      resetWrongAnswered();
     }
   };
 
