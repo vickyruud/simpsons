@@ -21,7 +21,7 @@ export const charactersList = [
     description: {
       role: "Oldest child and only son of Homer and Marge; brother of Lisa and Maggie. ",
     },
-    firstAppearance: '"Good Night"',
+    firstAppearance: '"Good Night!"',
   },
   {
     character: "Lisa Simpson ",
